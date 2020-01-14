@@ -17,4 +17,4 @@ def getAbout():
 def contact():
   return render_template('contact.html', phone = 87320514)
 
-app.run(host='0.0.0.0',port=8020)
+app.run(host='0.0.0.0', threaded=True, port=5000, debug=True)
