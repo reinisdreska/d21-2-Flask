@@ -53,9 +53,9 @@ def filework():
 @app.route('/json')
 def json_get():
   list=[]
-  list.append('value1')
-  list.append('value2')
-  list.append('value3')
+  list.append("value1")
+  list.append("value2")
+  list.append("value3")
   return jsonify({'data':list})
 
 if __name__ == '__main__':
