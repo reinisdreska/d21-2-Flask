@@ -33,10 +33,12 @@ def read_from_file():
 
 @app.route('/write_file',methods=['POST'])
 def write_to_file():
-  return request.content_type
-  contentJSON=request.get_json()
-  write_file(contentJSON['data'])
-  return f"Add line {contentJSON['data']} to file."
+  if request.content_type == "application/json":
+    contentJSON=request.get_json()
+    write_file(contentJSON['data'])
+    return f"Add line {contentJSON['data']} to file."
+  else:
+    return f"Invalid request {request.content_type} not supported"
 
 
 @app.route('/file',methods=['GET','POST'])
@@ -46,7 +48,7 @@ def filework():
   elif request.method=='POST':
     return write_to_file
   else:
-    return f"Method is {request.method}"
+    return f"Method is {request.method} not supported "
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', threaded=True, port='5000', debug=True)
